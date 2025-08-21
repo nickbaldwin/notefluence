@@ -33,12 +33,8 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   error: null,
 
   signInWithGoogle: async () => {
-    // Determine the correct redirect URL based on the current environment
-    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    const redirectUrl = isLocalhost 
-      ? 'http://localhost:3000/auth/callback'
-      : 'https://notefluence.vercel.app/auth/callback';
-    
+    // Use the current origin for redirect URL
+    const redirectUrl = `${window.location.origin}/auth/callback`;
     console.log('Signing in with Google, redirect URL:', redirectUrl, 'Current origin:', window.location.origin);
     
     const { data, error } = await supabase.auth.signInWithOAuth({
@@ -55,12 +51,8 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   },
 
   signInWithGitHub: async () => {
-    // Determine the correct redirect URL based on the current environment
-    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    const redirectUrl = isLocalhost 
-      ? 'http://localhost:3000/auth/callback'
-      : 'https://notefluence.vercel.app/auth/callback';
-    
+    // Use the current origin for redirect URL
+    const redirectUrl = `${window.location.origin}/auth/callback`;
     console.log('Signing in with GitHub, redirect URL:', redirectUrl, 'Current origin:', window.location.origin);
     
     const { data, error } = await supabase.auth.signInWithOAuth({
