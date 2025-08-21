@@ -22,6 +22,7 @@ interface UserProfileState {
 
 interface UserProfileActions {
   fetchProfile: (userId: string) => Promise<void>;
+  createProfile: (userId: string) => Promise<void>;
   updateProfile: (userId: string, updates: Partial<UserProfile>) => Promise<void>;
   setOnboarded: (userId: string) => Promise<void>;
   setProfile: (profile: UserProfile | null) => void;
