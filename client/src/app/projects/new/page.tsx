@@ -120,9 +120,7 @@ export default function NewProjectPage() {
       const newProject = await createProject({
         title: formData.title,
         description: formData.description,
-        isPublic: formData.visibility === 'public',
-        tags: formData.tags,
-        template: formData.template
+        isPublic: formData.visibility === 'public'
       });
       
       console.log('Project created successfully:', newProject);
