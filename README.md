@@ -1,4 +1,4 @@
-# Notebook Wiki SaaS
+# Notefluence
 
 A modern SaaS product that combines wiki-style project management with Jupyter-style notebooks using React. Create, collaborate, and share interactive documentation with code execution capabilities.
 
@@ -8,7 +8,7 @@ A modern SaaS product that combines wiki-style project management with Jupyter-s
 - **Wiki-style Projects**: Organize content in hierarchical project structures
 - **Jupyter-style Notebooks**: Interactive cells with code execution and markdown
 - **Real-time Collaboration**: Multiple users can edit simultaneously
-- **Code Execution**: Run JavaScript, Python (via API), and other languages
+- **Code Execution**: Run JavaScript with sandboxed execution
 - **Rich Text Editing**: Markdown support with live preview
 - **File Management**: Upload and manage images, documents, and code files
 - **Search & Navigation**: Full-text search across all projects
@@ -22,7 +22,7 @@ A modern SaaS product that combines wiki-style project management with Jupyter-s
 - **Real-time Updates**: Live collaboration indicators
 
 ### 🔐 SaaS Features
-- **User Authentication**: Secure login with JWT tokens
+- **User Authentication**: Secure OAuth login with Google/GitHub
 - **Project Sharing**: Public and private project options
 - **Team Management**: Invite collaborators and manage permissions
 - **Usage Analytics**: Track project views and engagement
@@ -39,55 +39,48 @@ A modern SaaS product that combines wiki-style project management with Jupyter-s
 - **React Query** for data fetching
 - **Zustand** for state management
 
-### Backend
-- **Node.js** with Express
-- **TypeScript** for type safety
-- **PostgreSQL** for database
-- **Prisma** for ORM
-- **JWT** for authentication
-- **Socket.io** for real-time features
-- **Multer** for file uploads
+### Backend & Database
+- **Supabase** for database, authentication, and real-time features
+- **PostgreSQL** for database (via Supabase)
+- **Row Level Security** for data protection
+- **OAuth** for authentication (Google, GitHub)
 
 ### Infrastructure
-- **Docker** for containerization
-- **Redis** for caching and sessions
-- **AWS S3** for file storage
-- **Vercel** for deployment
+- **Vercel** for deployment and hosting
+- **GitHub** for version control
+- **Automatic CI/CD** pipeline
 
 ## Project Structure
 
 ```
-notebook-wiki-saas/
-├── client/                 # React frontend
-│   ├── components/         # Reusable UI components
-│   ├── pages/             # Next.js pages
-│   ├── hooks/             # Custom React hooks
-│   ├── stores/            # Zustand state stores
-│   ├── types/             # TypeScript type definitions
-│   └── utils/             # Utility functions
-├── server/                # Node.js backend
-│   ├── controllers/       # Route controllers
-│   ├── middleware/        # Express middleware
-│   ├── models/           # Database models
-│   ├── routes/           # API routes
-│   └── services/         # Business logic
-├── shared/               # Shared types and utilities
-└── docs/                 # Documentation
+notefluence/
+├── client/                 # Next.js frontend
+│   ├── src/
+│   │   ├── app/           # Next.js app router
+│   │   ├── components/    # Reusable UI components
+│   │   ├── stores/        # Zustand state stores
+│   │   ├── types/         # TypeScript type definitions
+│   │   └── utils/         # Utility functions
+│   └── public/            # Static assets
+├── supabase/              # Database migrations
+│   └── migrations/        # SQL migration files
+├── server/                # Legacy Express backend (not used)
+└── docs/                  # Documentation
 ```
 
 ## Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
-- PostgreSQL 14+
-- Redis 6+
+- Node.js 18+
+- Supabase account
+- Vercel account (for deployment)
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd notebook-wiki-saas
+   git clone https://github.com/nickbaldwin/notefluence.git
+   cd notefluence
    ```
 
 2. **Install dependencies**
@@ -97,61 +90,54 @@ notebook-wiki-saas/
 
 3. **Set up environment variables**
    ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
+   cp env.example .env
+   # Add your Supabase credentials to client/.env.local
    ```
 
-4. **Set up the database**
-   ```bash
-   cd server
-   npx prisma migrate dev
-   npx prisma generate
-   ```
+4. **Set up Supabase**
+   - Create a new Supabase project
+   - Run the migrations in `supabase/migrations/`
+   - Configure OAuth providers
 
-5. **Start the development servers**
+5. **Start development server**
    ```bash
    npm run dev
    ```
 
-The application will be available at:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:5000
+## Deployment
 
-## Development
+### Automatic Deployment
+This project is configured for automatic deployment to Vercel:
 
-### Running Tests
+1. **Push to GitHub** - Automatic deployment triggers
+2. **Vercel builds** and deploys your changes
+3. **Production site** is updated automatically
+
+### Manual Deployment
 ```bash
-# Frontend tests
-cd client && npm test
-
-# Backend tests
-cd server && npm test
+cd client
+vercel --prod
 ```
 
-### Building for Production
-```bash
-npm run build
-```
+## Documentation
 
-### Docker Deployment
-```bash
-docker-compose up -d
-```
+- [Deployment Guide](DEPLOYMENT_GUIDE.md) - Complete deployment instructions
+- [Deployment Checklist](DEPLOYMENT_CHECKLIST.md) - Step-by-step checklist
+- [Supabase Migration Guide](SUPABASE_MIGRATION_GUIDE.md) - Database setup
+- [Security Fix Guide](SECURITY_FIX_GUIDE.md) - Security configuration
+
+## Live Demo
+
+Visit the live application: [https://notefluence.vercel.app](https://notefluence.vercel.app)
 
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Add tests
+4. Test thoroughly
 5. Submit a pull request
 
 ## License
 
 MIT License - see LICENSE file for details
-
-## Support
-
-For support and questions, please open an issue on GitHub or contact the development team.
-# Updated Thu Aug 21 12:34:01 AEST 2025
-# Test deployment - Thu Aug 21 15:02:02 AEST 2025
