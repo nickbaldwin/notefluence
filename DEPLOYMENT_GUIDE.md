@@ -126,6 +126,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
    - Output Directory: `.next`
    - Install Command: `npm install`
 
+5. **Enable Automatic Deployments:**
+   - In Vercel project settings, ensure GitHub integration is enabled
+   - Automatic deployments will trigger on every push to the main branch
+
 ### **Step 5: Test Production**
 
 1. **Visit your deployed site**
@@ -133,6 +137,21 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 3. **Test project creation**
 4. **Test project viewing**
 5. **Test all main features**
+
+## **Automatic Deployment Workflow**
+
+### **✅ How It Works:**
+1. **Make changes** to your code locally
+2. **Commit and push** to GitHub main branch
+3. **Vercel automatically detects** the push
+4. **Builds and deploys** your changes
+5. **Your site is updated** without manual intervention
+
+### **✅ Benefits:**
+- **No manual deployment** needed
+- **Continuous integration** from GitHub
+- **Automatic rollback** if build fails
+- **Preview deployments** for pull requests (optional)
 
 ## **Current Implementation Details**
 
