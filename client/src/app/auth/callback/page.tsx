@@ -22,7 +22,10 @@ export default function AuthCallbackPage() {
         if (error) {
           console.error('Auth callback error:', error);
           toast.error('Authentication failed');
-          router.push('/');
+          // Redirect to appropriate URL based on environment
+          const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+          const redirectUrl = isLocalhost ? 'http://localhost:3000' : 'https://notefluence.vercel.app';
+          window.location.href = redirectUrl;
           return;
         }
 
@@ -38,22 +41,32 @@ export default function AuthCallbackPage() {
             // Check if user needs onboarding
             const profile = useUserProfileStore.getState().profile;
             if (profile && !profile.is_onboarded) {
-              router.push('/onboarding');
+              const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+              const baseUrl = isLocalhost ? 'http://localhost:3000' : 'https://notefluence.vercel.app';
+              window.location.href = `${baseUrl}/onboarding`;
             } else {
-              router.push('/');
+              const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+              const baseUrl = isLocalhost ? 'http://localhost:3000' : 'https://notefluence.vercel.app';
+              window.location.href = baseUrl;
             }
           } catch (error) {
             console.error('Error fetching profile:', error);
             toast.success('Successfully signed in!');
-            router.push('/');
+            const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const baseUrl = isLocalhost ? 'http://localhost:3000' : 'https://notefluence.vercel.app';
+            window.location.href = baseUrl;
           }
         } else {
-          router.push('/');
+          const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+          const baseUrl = isLocalhost ? 'http://localhost:3000' : 'https://notefluence.vercel.app';
+          window.location.href = baseUrl;
         }
       } catch (error) {
         console.error('Auth callback error:', error);
         toast.error('Authentication failed');
-        router.push('/');
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const baseUrl = isLocalhost ? 'http://localhost:3000' : 'https://notefluence.vercel.app';
+        window.location.href = baseUrl;
       }
     };
 
