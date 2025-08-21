@@ -7,7 +7,6 @@ A modern SaaS product that combines wiki-style project management with Jupyter-s
 ### 🚀 Core Features
 - **Wiki-style Projects**: Organize content in hierarchical project structures
 - **Jupyter-style Notebooks**: Interactive cells with code execution and markdown
-- **Real-time Collaboration**: Multiple users can edit simultaneously
 - **Code Execution**: Run JavaScript with sandboxed execution
 - **Rich Text Editing**: Markdown support with live preview
 - **File Management**: Upload and manage images, documents, and code files
@@ -19,7 +18,7 @@ A modern SaaS product that combines wiki-style project management with Jupyter-s
 - **Dark/Light Mode**: Toggle between themes
 - **Drag & Drop**: Intuitive file and cell management
 - **Keyboard Shortcuts**: Power user features for efficiency
-- **Real-time Updates**: Live collaboration indicators
+- **Live Updates**: Real-time data synchronization
 
 ### 🔐 SaaS Features
 - **User Authentication**: Secure OAuth login with Google/GitHub
@@ -38,9 +37,12 @@ A modern SaaS product that combines wiki-style project management with Jupyter-s
 - **Monaco Editor** for code editing
 - **React Query** for data fetching
 - **Zustand** for state management
+- **React Hook Form** for form handling
+- **Zod** for validation
+- **React Markdown** for markdown rendering
 
 ### Backend & Database
-- **Supabase** for database, authentication, and real-time features
+- **Supabase** for database, authentication, and data synchronization
 - **PostgreSQL** for database (via Supabase)
 - **Row Level Security** for data protection
 - **OAuth** for authentication (Google, GitHub)
@@ -64,7 +66,7 @@ notefluence/
 │   └── public/            # Static assets
 ├── supabase/              # Database migrations
 │   └── migrations/        # SQL migration files
-├── server/                # Legacy Express backend (not used)
+├── server/                # Legacy Express backend (not used in production)
 └── docs/                  # Documentation
 ```
 
@@ -103,6 +105,10 @@ notefluence/
    ```bash
    npm run dev
    ```
+
+The application will be available at:
+- **Frontend**: http://localhost:3000
+- **No separate backend** - using Supabase directly
 
 ## Deployment
 
