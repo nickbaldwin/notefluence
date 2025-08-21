@@ -33,14 +33,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   error: null,
 
   signInWithGoogle: async () => {
-    // Force the redirect URL to be the current origin
-    const currentOrigin = window.location.origin;
-    const redirectUrl = `${currentOrigin}/auth/callback`;
-    
-    console.log('Signing in with Google');
-    console.log('Current origin:', currentOrigin);
-    console.log('Redirect URL:', redirectUrl);
-    console.log('Full URL:', window.location.href);
+    const redirectUrl = `${window.location.origin}/auth/callback`;
     
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -52,20 +45,11 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
         },
       }
     });
-    
-    console.log('OAuth response:', { data, error });
     return { data, error };
   },
 
   signInWithGitHub: async () => {
-    // Force the redirect URL to be the current origin
-    const currentOrigin = window.location.origin;
-    const redirectUrl = `${currentOrigin}/auth/callback`;
-    
-    console.log('Signing in with GitHub');
-    console.log('Current origin:', currentOrigin);
-    console.log('Redirect URL:', redirectUrl);
-    console.log('Full URL:', window.location.href);
+    const redirectUrl = `${window.location.origin}/auth/callback`;
     
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'github',
@@ -76,8 +60,6 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
         },
       }
     });
-    
-    console.log('OAuth response:', { data, error });
     return { data, error };
   },
 

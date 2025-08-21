@@ -3,16 +3,24 @@
 ## **Pre-Deployment Checklist**
 
 ### **✅ Database Setup**
-- [ ] Supabase project is ready
-- [ ] All migrations have been run (001-006)
-- [ ] RLS policies are in place
-- [ ] OAuth providers are configured
+- [✅] Supabase project is ready
+- [✅] All migrations have been run (001-006)
+- [✅] RLS policies are in place
+- [✅] OAuth providers are configured
 - [ ] Database backup created (recommended)
 
 ### **✅ Environment Variables**
 - [ ] `client/.env.local` exists with Supabase credentials
 - [ ] Same credentials will be used for production
 - [ ] OAuth redirect URLs include both localhost and production domain
+
+### **✅ Supabase OAuth Configuration**
+- [ ] **Default Site URL** set to production URL: `https://your-domain.vercel.app`
+- [ ] **Redirect URLs** include both:
+  - `http://localhost:3000/auth/callback` (development)
+  - `https://your-domain.vercel.app/auth/callback` (production)
+- [ ] Google OAuth provider configured in Supabase
+- [ ] GitHub OAuth provider configured (if using GitHub auth)
 
 ### **✅ Code Preparation**
 - [ ] All code is committed to Git
@@ -38,9 +46,14 @@
 
 ### **2. Configure OAuth (if not done already)**
 - [ ] Go to your Supabase project
+- [ ] Navigate to Authentication > URL Configuration
+- [ ] Set **Default Site URL** to: `https://your-domain.vercel.app`
+- [ ] Add **Redirect URLs**:
+  - `http://localhost:3000/auth/callback`
+  - `https://your-domain.vercel.app/auth/callback`
 - [ ] Navigate to Authentication > Providers
-- [ ] Add production redirect URL: `https://your-domain.vercel.app/auth/callback`
-- [ ] Keep development URL: `http://localhost:3000/auth/callback`
+- [ ] Configure Google OAuth provider
+- [ ] Configure GitHub OAuth provider (if using GitHub auth)
 
 ### **3. Test Production**
 - [ ] Visit your deployed site
@@ -103,6 +116,13 @@
 - Check browser console for errors
 - Verify user is authenticated
 - Check RLS policies are working
+
+**OAuth Redirect Issues:**
+- Verify Supabase URL Configuration is correct
+- Check that both localhost and production URLs are in Redirect URLs
+- Ensure Default Site URL is set to production URL
+- Clear browser cache and cookies
+- Check that OAuth providers are properly configured in Supabase
 
 ## **Important Notes**
 

@@ -87,6 +87,23 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
    - **Development**: `http://localhost:3000/auth/callback`
    - **Production**: `https://your-domain.vercel.app/auth/callback`
 
+**Important: Configure Supabase URL Settings**
+
+1. Go to your Supabase project **Authentication > URL Configuration**
+2. Set the following:
+   - **Default Site URL**: `https://your-domain.vercel.app` (your production URL)
+   - **Redirect URLs** (add both):
+     ```
+     http://localhost:3000/auth/callback
+     https://your-domain.vercel.app/auth/callback
+     ```
+
+**This configuration allows:**
+- ✅ **Development**: Authentication redirects to localhost
+- ✅ **Production**: Authentication redirects to production
+- ✅ **No manual switching** between environments needed
+- ✅ **Automatic environment detection** based on where the user initiates authentication
+
 ### **Step 4: Deploy to Vercel**
 
 1. **Push your code to GitHub**
@@ -300,16 +317,24 @@ supabase/migrations/
    - Verify domain configuration
 
 2. **Authentication Issues:**
-   - Check OAuth redirect URLs
+   - Check OAuth redirect URLs in Supabase URL Configuration
    - Verify environment variables
    - Check Supabase auth settings
+   - Ensure both localhost and production URLs are in Redirect URLs list
 
-3. **Database Connection:**
+3. **OAuth Redirect Issues:**
+   - Verify Supabase URL Configuration is correct
+   - Check that both localhost and production URLs are in Redirect URLs
+   - Ensure Default Site URL is set to production URL
+   - Clear browser cache and cookies
+   - Check that OAuth providers are properly configured in Supabase
+
+4. **Database Connection:**
    - Verify Supabase URL and keys
    - Check RLS policies
    - Ensure migrations are applied
 
-4. **Build Failures:**
+5. **Build Failures:**
    - Check for missing dependencies
    - Verify TypeScript compilation
    - Check environment variables
