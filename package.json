@@ -1,0 +1,30 @@
+{
+  "name": "notefluence-saas",
+  "version": "1.0.0",
+  "description": "Notefluence - A SaaS product for creating wiki-style projects with Jupyter-style notebooks using React",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run client",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
+    "start": "cd server && npm start"
+  },
+  "keywords": [
+    "saas",
+    "wiki",
+    "notebook",
+    "react",
+    "jupyter",
+    "notefluence"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.55.0"
+  }
+}
