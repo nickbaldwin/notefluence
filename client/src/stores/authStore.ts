@@ -33,10 +33,13 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   error: null,
 
   signInWithGoogle: async () => {
+    const redirectUrl = `${window.location.origin}/auth/callback`;
+    console.log('Signing in with Google, redirect URL:', redirectUrl);
+    
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
+        redirectTo: redirectUrl,
         queryParams: {
           access_type: 'offline',
           prompt: 'consent',
@@ -47,10 +50,13 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   },
 
   signInWithGitHub: async () => {
+    const redirectUrl = `${window.location.origin}/auth/callback`;
+    console.log('Signing in with GitHub, redirect URL:', redirectUrl);
+    
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
+        redirectTo: redirectUrl,
         queryParams: {
           scope: 'read:user user:email',
         },

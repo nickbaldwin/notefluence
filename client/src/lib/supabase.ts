@@ -14,7 +14,14 @@ if (!supabaseUrl || !supabaseAnonKey ||
 const finalSupabaseUrl = supabaseUrl || 'https://placeholder.supabase.co';
 const finalSupabaseAnonKey = supabaseAnonKey || 'placeholder_key_for_dev';
 
-export const supabase = createClient(finalSupabaseUrl, finalSupabaseAnonKey);
+export const supabase = createClient(finalSupabaseUrl, finalSupabaseAnonKey, {
+  auth: {
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: true,
+    flowType: 'pkce'
+  }
+});
 
 // Database types
 export interface Database {
